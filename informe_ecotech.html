@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>EcoTech Solutions - Informe de Evaluación 1</title>
+<style>
+@page { size: A4; margin: 18mm 16mm; }
+body { font-family: Georgia, serif; color: #1f2933; line-height: 1.45; font-size: 10.5pt; }
+h1 { color: #0f4c5c; font-size: 24pt; margin-top: 0; }
+h2 { color: #0f4c5c; border-bottom: 1px solid #8fb9c4; padding-bottom: 4px; margin-top: 24px; }
+h3 { color: #256d78; margin-bottom: 4px; }
+code { font-family: Consolas, monospace; background: #eef4f5; padding: 1px 3px; }
+.cover { min-height: 245mm; display: flex; flex-direction: column; justify-content: center; text-align: center; page-break-after: always; }
+.cover h1 { font-size: 32pt; }
+.cover .subtitle { font-size: 16pt; color: #256d78; }
+.cover .meta { margin-top: 42mm; font-size: 12pt; }
+.diagram { text-align: center; page-break-before: always; }
+.diagram img { width: 100%; max-height: 245mm; object-fit: contain; }
+.note { border-left: 4px solid #f4a261; padding: 8px 12px; background: #fff7ed; }
+li { margin-bottom: 4px; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid #b7c9ce; padding: 6px; text-align: left; }
+th { background: #e4f1f3; }
+</style>
+</head>
+<body>
+<section class="cover">
+  <h1>EcoTech Solutions</h1>
+  <p class="subtitle">Propuesta de sistema orientado a objetos</p>
+  <p>Informe de Evaluación 1</p>
+  <div class="meta">POO Seguro<br>INACAP Valparaíso<br><br>2026</div>
+</section>
+
+<main>
+<h1>EcoTech Solutions: propuesta de sistema orientado a objetos</h1>
+<h2>1. Introducción</h2>
+<p>EcoTech Solutions es una empresa dedicada al desarrollo de tecnologías sostenibles. Durante el último año experimentó un crecimiento acelerado y su información interna quedó distribuida entre hojas de cálculo y sistemas aislados.</p>
+<p>Este informe propone un modelo basado en Programación Orientada a Objetos (POO) para centralizar la gestión de empleados, departamentos, proyectos y horas trabajadas. El diseño prioriza la integridad de los datos, la trazabilidad de las operaciones y la protección de la información personal.</p>
+<h2>2. Problema identificado</h2>
+<ol><li>Una misma persona puede aparecer registrada más de una vez con datos diferentes.</li><li>Se puede asignar personal incorrectamente a los proyectos.</li><li>No existe trazabilidad suficiente de las horas trabajadas ni de las tareas realizadas.</li><li>Los informes no son confiables porque se construyen a partir de datos inconsistentes.</li><li>Los datos personales están expuestos a riesgos de seguridad.</li></ol>
+<h2>3. Objetivos del sistema</h2>
+<ul><li>Mantener un registro único de cada empleado.</li><li>Administrar departamentos, gerentes y empleados.</li><li>Gestionar proyectos y sus asignaciones de personal.</li><li>Registrar las horas trabajadas con fecha, descripción, empleado y proyecto.</li><li>Generar informes de empleados, departamentos, proyectos y registros de tiempo.</li><li>Proteger la información sensible mediante autenticación, autorización, validación y encapsulamiento.</li></ul>
+<h2>4. Modelo de clases</h2>
+<table><tr><th>Clase</th><th>Responsabilidad</th><th>Operaciones principales</th></tr>
+<tr><td><code>Empleado</code></td><td>Representar los datos y asignaciones de una persona contratada.</td><td>Actualizar datos, asignar departamento y proyectos.</td></tr>
+<tr><td><code>Departamento</code></td><td>Agrupar empleados y administrar la unidad organizativa.</td><td>Crear, editar, buscar, eliminar y gestionar empleados.</td></tr>
+<tr><td><code>Proyecto</code></td><td>Gestionar iniciativas y sus integrantes.</td><td>Crear, editar, eliminar y gestionar empleados.</td></tr>
+<tr><td><code>RegistroTiempo</code></td><td>Trazar horas trabajadas por empleado y proyecto.</td><td>Validar, registrar y editar horas.</td></tr>
+<tr><td><code>Usuario</code></td><td>Controlar autenticación y permisos del sistema.</td><td>Autenticar y autorizar según rol.</td></tr></table>
+<p>Los atributos, tipos y métodos detallados de cada clase se encuentran en el modelo UML incorporado en este documento.</p>
+<h2>5. Relaciones y multiplicidades</h2>
+<ul><li>Un departamento puede tener cero o muchos empleados; cada empleado pertenece a un solo departamento a la vez.</li><li>Un empleado puede participar en cero o muchos proyectos y un proyecto puede tener cero o muchos empleados.</li><li>Cada registro de tiempo corresponde exactamente a un empleado y un proyecto.</li><li>Un usuario se asocia con un empleado y sus permisos dependen del rol.</li></ul>
+<h2>6. Reglas de negocio</h2>
+<ol><li>El identificador de un empleado debe ser único y asignarse automáticamente.</li><li>Un empleado no puede pertenecer simultáneamente a dos departamentos.</li><li>Un empleado solo puede registrar horas en proyectos a los que está asignado.</li><li>Las horas deben ser mayores que cero y respetar un límite razonable por registro.</li><li>No se debe eliminar un departamento si todavía tiene empleados sin reasignar.</li><li>No se debe eliminar un proyecto si existen registros de tiempo que perderían su trazabilidad.</li><li>Los informes deben generarse a partir de datos validados y centralizados.</li><li>Solo los usuarios autorizados pueden consultar o modificar datos sensibles.</li></ol>
+<h2>7. Seguridad y encapsulamiento</h2>
+<p>La seguridad contempla autenticación, autorización por roles, cifrado de datos personales, validación de entradas, encapsulamiento y trazabilidad. La implementación actual utiliza un campo destinado al hash de contraseña y autorización básica por roles; el uso de bcrypt o Argon2, persistencia segura y auditoría completa son mejoras pendientes.</p>
+<h2>8. Generación de informes</h2>
+<p>El sistema debe permitir informar empleados y departamentos, proyectos e integrantes, horas por empleado, horas por proyecto y registros filtrados por fecha. Antes de exportar se deben validar los datos y aplicar los permisos del usuario.</p>
+<h2>9. Aplicación de los conceptos de POO</h2>
+<ul><li><strong>Clases y objetos:</strong> las clases modelan las entidades y sus instancias representan datos concretos.</li><li><strong>Atributos y métodos:</strong> almacenan información y encapsulan operaciones.</li><li><strong>Encapsulamiento:</strong> controla la modificación de datos mediante métodos.</li><li><strong>Asociación y composición:</strong> representan las relaciones entre empleados, departamentos, proyectos y registros.</li></ul>
+<h2>10. Estado actual</h2>
+<p><code>main.py</code> implementa las cinco clases principales, sus operaciones, asignaciones bidireccionales, validación de horas, restricciones de eliminación y autorización básica. La persistencia, el cifrado real, el hash de contraseñas y los informes exportables quedan como etapas posteriores.</p>
+<h2>11. Uso responsable de IA</h2>
+<p>Las propuestas de IA deben revisarse contra los requisitos oficiales. Se deben conservar el contexto, la tarea, la respuesta, las decisiones aceptadas o descartadas y la justificación técnica de cada modificación.</p>
+<h2>12. Conclusión</h2>
+<p>El modelo orientado a objetos permite reemplazar información dispersa por un sistema centralizado, coherente y extensible. La distinción entre relaciones uno a muchos y muchos a muchos evita errores de asignación, mientras que la validación y la seguridad fortalecen la confiabilidad de la solución.</p>
+</main>
+<section class="diagram">
+<h1>Anexo A: Diagrama de clases UML</h1>
+<img src="diagrama_uml_ecotech.svg" alt="Diagrama de clases UML de EcoTech Solutions">
+</section>
+</body>
+</html>

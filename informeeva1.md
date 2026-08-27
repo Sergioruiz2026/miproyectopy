@@ -206,9 +206,9 @@ Los informes deben poder exportarse a PDF o a una planilla. Antes de exportarlos
 
 ## 10. Estado actual del repositorio
 
-El archivo `main.py` contiene actualmente un ejercicio introductorio con la clase `Socio`. Esta clase registra visitas y comprueba si una persona puede entrar según si está al día con sus pagos.
+El archivo `main.py` implementa las cinco clases principales del modelo: `Empleado`, `Departamento`, `Proyecto`, `RegistroTiempo` y `Usuario`.
 
-Ese código demuestra los conceptos básicos de clase, atributos, métodos, constructor e instancias, pero todavía no implementa el sistema de EcoTech Solutions descrito en este informe. Por tanto, el modelo presentado debe considerarse una propuesta de diseño para una futura ampliación.
+La implementación incluye creación y edición de entidades, asignaciones bidireccionales entre empleados, departamentos y proyectos, validación de horas, restricciones para eliminar entidades con dependencias y autorización básica por roles. La persistencia en base de datos, el cifrado de datos personales, el hash real de contraseñas y los informes exportables quedan como etapas posteriores del proyecto.
 
 ## 11. Uso de Inteligencia Artificial
 

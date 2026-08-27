@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-08-27" agent="Copilot" version="25.0" type="browser">
+  <diagram id="diagram1" name="EcoTech Solutions - Diagrama de Clases UML">
+    <mxGraphModel dx="1500" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        
+        <!-- CLASE EMPLEADO -->
+        <mxCell id="empleado" value="Empleado" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;fillColor=#d4e6f1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="50" width="280" height="320" as="geometry"/>
+        </mxCell>
+        <mxCell id="empleado_attr" value="- idEmpleado: int&#xa;- nombre: str&#xa;- direccion: str&#xa;- telefono: str&#xa;- correo: str&#xa;- fechaContrato: date&#xa;- salario: float&#xa;- departamento: Departamento&#xa;- proyectos: list[Proyecto]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="empleado">
+          <mxGeometry y="26" width="280" height="174" as="geometry"/>
+        </mxCell>
+        <mxCell id="empleado_line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=4;spacingRight=4;rotatable=0;labelPosition=right;labelBackgroundColor=none;strokeColor=#6c8ebf;html=1;" vertex="1" parent="empleado">
+          <mxGeometry y="200" width="280" height="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="empleado_methods" value="+ actualizarDatos(): void&#xa;+ asignarDepartamento(d: Dept): void&#xa;+ asignarProyecto(p: Proy): void&#xa;+ quitarProyecto(p: Proy): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="empleado">
+          <mxGeometry y="201" width="280" height="119" as="geometry"/>
+        </mxCell>
+        
+        <!-- CLASE DEPARTAMENTO -->
+        <mxCell id="departamento" value="Departamento" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;fillColor=#d5f4e6;" vertex="1" parent="1">
+          <mxGeometry x="430" y="50" width="280" height="240" as="geometry"/>
+        </mxCell>
+        <mxCell id="departamento_attr" value="- idDepartamento: int&#xa;- nombre: str&#xa;- gerente: Empleado&#xa;- empleados: list[Empleado]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="departamento">
+          <mxGeometry y="26" width="280" height="94" as="geometry"/>
+        </mxCell>
+        <mxCell id="departamento_line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=4;spacingRight=4;rotatable=0;labelPosition=right;labelBackgroundColor=none;strokeColor=#6c8ebf;html=1;" vertex="1" parent="departamento">
+          <mxGeometry y="120" width="280" height="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="departamento_methods" value="+ crear(): void&#xa;+ editar(): void&#xa;+ buscar(id): Departamento&#xa;+ eliminar(): void&#xa;+ agregarEmpleado(e: Emp): void&#xa;+ quitarEmpleado(e: Emp): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="departamento">
+          <mxGeometry y="121" width="280" height="119" as="geometry"/>
+        </mxCell>
+        
+        <!-- CLASE PROYECTO -->
+        <mxCell id="proyecto" value="Proyecto" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;fillColor=#fdebd0;" vertex="1" parent="1">
+          <mxGeometry x="810" y="50" width="280" height="240" as="geometry"/>
+        </mxCell>
+        <mxCell id="proyecto_attr" value="- idProyecto: int&#xa;- nombre: str&#xa;- descripcion: str&#xa;- fechaInicio: date&#xa;- empleados: list[Empleado]&#xa;- registrosTiempo: list[RegistroTiempo]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="proyecto">
+          <mxGeometry y="26" width="280" height="114" as="geometry"/>
+        </mxCell>
+        <mxCell id="proyecto_line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=4;spacingRight=4;rotatable=0;labelPosition=right;labelBackgroundColor=none;strokeColor=#6c8ebf;html=1;" vertex="1" parent="proyecto">
+          <mxGeometry y="140" width="280" height="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="proyecto_methods" value="+ crear(): void&#xa;+ editar(): void&#xa;+ eliminar(): void&#xa;+ agregarEmpleado(e: Emp): void&#xa;+ quitarEmpleado(e: Emp): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="proyecto">
+          <mxGeometry y="141" width="280" height="99" as="geometry"/>
+        </mxCell>
+        
+        <!-- CLASE REGISTRO TIEMPO -->
+        <mxCell id="registro" value="RegistroTiempo" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;fillColor=#fadbd8;" vertex="1" parent="1">
+          <mxGeometry x="430" y="500" width="280" height="210" as="geometry"/>
+        </mxCell>
+        <mxCell id="registro_attr" value="- fecha: date&#xa;- horas: float&#xa;- descripcion: str&#xa;- empleado: Empleado&#xa;- proyecto: Proyecto" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="registro">
+          <mxGeometry y="26" width="280" height="94" as="geometry"/>
+        </mxCell>
+        <mxCell id="registro_line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=4;spacingRight=4;rotatable=0;labelPosition=right;labelBackgroundColor=none;strokeColor=#6c8ebf;html=1;" vertex="1" parent="registro">
+          <mxGeometry y="120" width="280" height="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="registro_methods" value="+ validarHoras(): bool&#xa;+ registrar(): void&#xa;+ editar(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="registro">
+          <mxGeometry y="121" width="280" height="89" as="geometry"/>
+        </mxCell>
+        
+        <!-- CLASE USUARIO -->
+        <mxCell id="usuario" value="Usuario" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;fillColor=#ebf5fb;" vertex="1" parent="1">
+          <mxGeometry x="50" y="500" width="280" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="usuario_attr" value="- idUsuario: int&#xa;- nombreUsuario: str&#xa;- contrasenaHash: str&#xa;- rol: str" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="usuario">
+          <mxGeometry y="26" width="280" height="74" as="geometry"/>
+        </mxCell>
+        <mxCell id="usuario_line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=4;spacingRight=4;rotatable=0;labelPosition=right;labelBackgroundColor=none;strokeColor=#6c8ebf;html=1;" vertex="1" parent="usuario">
+          <mxGeometry y="100" width="280" height="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="usuario_methods" value="+ autenticar(): bool&#xa;+ autorizar(modulo): bool" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="usuario">
+          <mxGeometry y="101" width="280" height="69" as="geometry"/>
+        </mxCell>
+        
+        <!-- RELACIONES -->
+        <!-- Departamento 1 --- 0..* Empleado -->
+        <mxCell id="rel1" edge="1" parent="1" source="departamento" target="empleado">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="160" as="sourcePoint"/>
+            <mxPoint x="330" y="160" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel1_label1" value="1" style="edgeLabel;resizable=0;align=center;verticalAlign=bottom;html=1;backgroundFill=1;" connectable="0" vertex="1" parent="rel1">
+          <mxGeometry x="-1" relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="rel1_label2" value="0..*" style="edgeLabel;resizable=0;align=center;verticalAlign=bottom;html=1;backgroundFill=1;" connectable="0" vertex="1" parent="rel1">
+          <mxGeometry x="1" relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Empleado 0..* --- 0..* Proyecto -->
+        <mxCell id="rel2" edge="1" parent="1" source="empleado" target="proyecto">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="330" y="160" as="sourcePoint"/>
+            <mxPoint x="810" y="160" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel2_label1" value="0..*" style="edgeLabel;resizable=0;align=center;verticalAlign=bottom;html=1;backgroundFill=1;" connectable="0" vertex="1" parent="rel2">
+          <mxGeometry x="-1" relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="rel2_label2" value="0..*" style="edgeLabel;resizable=0;align=center;verticalAlign=bottom;html=1;backgroundFill=1;" connectable="0" vertex="1" parent="rel2">
+          <mxGeometry x="1" relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Empleado 1 --- 0..* RegistroTiempo -->
+        <mxCell id="rel3" edge="1" parent="1" source="empleado" target="registro">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="190" y="370" as="sourcePoint"/>
+            <mxPoint x="570" y="500" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel3_label1" value="1" style="edgeLabel;resizable=0;align=center;verticalAlign=bottom;html=1;backgroundFill=1;" connectable="0" vertex="1" parent="rel3">
+          <mxGeometry x="-1" relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="rel3_label2" value="0..*" style="edgeLabel;resizable=0;align=center;verticalAlign=bottom;html=1;backgroundFill=1;" connectable="0" vertex="1" parent="rel3">
+          <mxGeometry x="1" relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Proyecto 1 --- 0..* RegistroTiempo -->
+        <mxCell id="rel4" edge="1" parent="1" source="proyecto" target="registro">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="950" y="290" as="sourcePoint"/>
+            <mxPoint x="710" y="500" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel4_label1" value="1" style="edgeLabel;resizable=0;align=center;verticalAlign=bottom;html=1;backgroundFill=1;" connectable="0" vertex="1" parent="rel4">
+          <mxGeometry x="-1" relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="rel4_label2" value="0..*" style="edgeLabel;resizable=0;align=center;verticalAlign=bottom;html=1;backgroundFill=1;" connectable="0" vertex="1" parent="rel4">
+          <mxGeometry x="1" relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Usuario --- Empleado (asociación) -->
+        <mxCell id="rel5" edge="1" parent="1" source="usuario" target="empleado" style="dashed=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="330" y="540" as="sourcePoint"/>
+            <mxPoint x="190" y="370" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel5_label" value="está asociado a" style="edgeLabel;resizable=0;align=center;verticalAlign=bottom;html=1;backgroundFill=1;" connectable="0" vertex="1" parent="rel5">
+          <mxGeometry x="0" y="-1" relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
