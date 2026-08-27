@@ -1,3 +1,5 @@
+# Cear clase
+
 class Socio:
     def __init__(self, nombre, numero_socio, al_dia):
         self.nombre = nombre
