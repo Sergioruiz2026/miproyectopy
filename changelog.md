@@ -31,3 +31,17 @@ Este archivo registra cronológicamente cada prompt futuro y cada respuesta asoc
 - **Respuesta y acciones:** Se reorganizó la numeración de secciones, se normalizó la jerarquía de encabezados Markdown, se convirtieron las tablas de texto a tablas Markdown y se reemplazaron las viñetas inconsistentes.
 - **Archivos modificados:** `informeeva1.md`, `changelog.md`.
 - **Validaciones:** Se comprobaron nueve tablas Markdown y `git diff --check` finalizó sin advertencias.
+
+### 2026-08-28
+
+- **Prompt:** Actualizar el código de `main.py`.
+- **Respuesta y acciones:** Se corrigió la autenticación para verificar el hash de la contraseña y se mantuvo la relación Departamento-Empleado sincronizada al reasignar empleados. También se actualizó el ejemplo de uso para generar el hash de la contraseña de demostración.
+- **Archivos modificados:** `main.py`, `changelog.md`.
+- **Validaciones:** `python -m py_compile main.py`, prueba funcional de autenticación y reasignación de departamento, y ejecución completa de `python main.py`.
+
+### 2026-08-28
+
+- **Prompt:** Ordenar `informeeva1.md` y arreglar el código de `main.py`.
+- **Respuesta y acciones:** Se restauró la numeración y jerarquía Markdown del informe, se convirtieron las tablas restantes a formato Markdown, se normalizaron las listas y se enlazó el diagrama disponible. En `main.py` se impidieron registros de tiempo duplicados y se evitó conservar horas inválidas después de una edición.
+- **Archivos modificados:** `informeeva1.md`, `main.py`, `changelog.md`.
+- **Validaciones:** `python -m py_compile main.py`, pruebas funcionales de registros, ejecución completa de `python main.py` y `git diff --check` sin advertencias.

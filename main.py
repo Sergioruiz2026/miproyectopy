@@ -7,6 +7,8 @@ Evaluación Sumativa 1
 """
 
 from datetime import date
+import hashlib
+import hmac
 from typing import List, Optional
 
 
@@ -76,6 +78,12 @@ class Empleado:
             print("Error: Departamento no válido")
             return False
         
+        if self.departamento is departamento:
+            return False
+
+        if self.departamento is not None and self in self.departamento.empleados:
+            self.departamento.empleados.remove(self)
+
         self.departamento = departamento
         if self not in departamento.empleados:
             departamento.empleados.append(self)
@@ -222,9 +230,7 @@ class Departamento:
             bool: True si la adición fue exitosa
         """
         if empleado not in self.empleados:
-            self.empleados.append(empleado)
-            empleado.departamento = self
-            return True
+            return empleado.asignarDepartamento(self)
         
         return False
     
@@ -240,7 +246,8 @@ class Departamento:
         """
         if empleado in self.empleados:
             self.empleados.remove(empleado)
-            empleado.departamento = None
+            if empleado.departamento is self:
+                empleado.departamento = None
             return True
         
         return False
@@ -405,8 +412,13 @@ class RegistroTiempo:
         """
         if not self.validarHoras():
             return False
-        
-        self.proyecto.registrosTiempo.append(self)
+
+        if self not in self.proyecto.registrosTiempo:
+            self.proyecto.registrosTiempo.append(self)
+        else:
+            print("Error: El registro ya fue registrado")
+            return False
+
         print(f"Registro de tiempo creado: {self.empleado.nombre} - "
               f"{self.horas}h en {self.proyecto.nombre}")
         return True
@@ -423,15 +435,17 @@ class RegistroTiempo:
         """
         atributos_permitidos = {'fecha', 'horas', 'descripcion'}
         
+        if any(clave not in atributos_permitidos for clave in kwargs):
+            print("Error: Atributo no permitido")
+            return False
+
+        horas_originales = self.horas
         for clave, valor in kwargs.items():
-            if clave in atributos_permitidos:
-                setattr(self, clave, valor)
-            else:
-                print(f"Atributo {clave} no permitido")
-                return False
-        
-        if 'horas' in kwargs:
-            if not self.validarHoras():
+            setattr(self, clave, valor)
+
+        if not self.validarHoras():
+            self.horas = horas_originales
+            if 'horas' in kwargs:
                 return False
         
         return True
@@ -461,6 +475,11 @@ class Usuario:
         self.contrasenaHash = contrasenaHash
         self.rol = rol
         self.empleado: Optional[Empleado] = None
+
+    @staticmethod
+    def generarHash(contrasena: str) -> str:
+        """Genera el hash SHA-256 de una contraseña para la demostración."""
+        return hashlib.sha256(contrasena.encode('utf-8')).hexdigest()
     
     def autenticar(self, nombreUsuario: str, contrasena_ingresada: str) -> bool:
         """
@@ -473,10 +492,9 @@ class Usuario:
         Returns:
             bool: True si las credenciales son válidas
         """
-        # NOTA: En producción, usar bcrypt o argon2 para hash de contraseñas
-        # Esta es una implementación simplificada para demostración
-        if self.nombreUsuario == nombreUsuario:
-            # Se debería usar hash verificado con bcrypt
+        hash_ingresado = self.generarHash(contrasena_ingresada)
+        if (self.nombreUsuario == nombreUsuario and
+            hmac.compare_digest(self.contrasenaHash, hash_ingresado)):
             print(f"Usuario {nombreUsuario} autenticado exitosamente")
             return True
         
@@ -560,7 +578,7 @@ if __name__ == "__main__":
         registro1.registrar()
     
     # Crear usuario y verificar autorización
-    usuario1 = Usuario(1001, "jperez", "hash_seguro_contraseña", "supervisor")
+    usuario1 = Usuario(1001, "jperez", Usuario.generarHash("contraseña"), "supervisor")
     usuario1.empleado = emp1
     usuario1.autenticar("jperez", "contraseña")
     usuario1.autorizar("reportes")
